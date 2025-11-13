@@ -29,16 +29,42 @@ int BusquedaBinaria_INV(T X, vector<T> V, int ini, int fin){
 		cout << "No se encuentra en el array " << endl;
         }
 	int medio = (ini + fin)/2;
-
+	
 	if(V[medio] == X){
 		return medio;
         }
 	else if(V[medio] > X){
-		return BusquedaBinaria(X, V,medio+1, fin);
+		return BusquedaBinaria_INV(X, V,medio+1, fin);
         }
 	else{
-		return BusquedaBinaria(X, V, ini, medio-1);
+		return BusquedaBinaria_INV(X, V, ini, medio-1);
         }
 
+}
+
+
+
+
+template <typename T>
+void QuickSort(vector<T> V, int ini, int fin){
+	if (ini < fin){
+		int pivot = Partition(V, ini, fin);
+		QuickSort(V, ini, pivot-1);
+		QuickSort(V, pivot+1, fin);
+	}
+}
+template <typename T>
+int Partition(vector<T> V, int ini, int fin){
+	T x = V[fin];
+	int i=ini;
+	int j;
+	for(j=ini; j<fin; j++){
+		if(V[j] <= x){
+			swap[V[i],V[j]];
+			i++;
+		}
+	}
+	swap[V[i],V[fin]];
+	return i;
 }
 #endif
